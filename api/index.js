@@ -2,6 +2,7 @@ import dotenv from 'dotenv'
 dotenv.config({ path: "../.env" })
 import express from 'express'
 import mongoose from 'mongoose'
+import userRouter from '../api/routes/user.route.js'
 
 mongoose.connect(process.env.MONGO_URL).then(() => {
     console.log("Connected to mongo")
@@ -9,6 +10,12 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
     console.log(err)
 })
 const app = express()
+
+app.get("/apipe", (req, res) => {
+    res.send("Banana")
+})
+
+app.use("/api", userRouter)
 
 app.listen(3000, () => {
     console.log("Server is working")
