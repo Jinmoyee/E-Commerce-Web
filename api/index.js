@@ -3,6 +3,7 @@ dotenv.config({ path: "../.env" })
 import express from 'express'
 import mongoose from 'mongoose'
 import userRouter from '../api/routes/user.route.js'
+import authRouter from '../api/routes/auth.route.js'
 
 mongoose.connect(process.env.MONGO_URL).then(() => {
     console.log("Connected to mongo")
@@ -11,7 +12,11 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
 })
 const app = express()
 
-app.use("/api", userRouter)
+app.use(express.json())
+
+app.use("/api/user", userRouter)
+
+app.use("/api/auth", authRouter)
 
 app.listen(3000, () => {
     console.log("Server is working")
