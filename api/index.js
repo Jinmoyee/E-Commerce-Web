@@ -11,10 +11,6 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
 })
 const app = express()
 
-app.get("/apipe", (req, res) => {
-    res.send("Banana")
-})
-
 app.use("/api", userRouter)
 
 app.listen(3000, () => {
