@@ -18,6 +18,16 @@ app.use("/api/user", userRouter)
 
 app.use("/api/auth", authRouter)
 
+app.use((err, req, res, next) => {
+    const statusCodes = err.statusCode || 500
+    const message = err.message || 400
+    res.status(statusCodes).json({
+        success: false,
+        statusCode: statusCodes,
+        message
+    })
+})
+
 app.listen(3000, () => {
     console.log("Server is working")
 })
