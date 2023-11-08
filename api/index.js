@@ -1,6 +1,7 @@
 import dotenv from 'dotenv'
 dotenv.config({ path: "../.env" })
 import express from 'express'
+// import cors from 'cors'
 import mongoose from 'mongoose'
 import userRouter from '../api/routes/user.route.js'
 import authRouter from '../api/routes/auth.route.js'
